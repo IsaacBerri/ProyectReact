@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.barraNav {
+  width: 100%;
+  height: 60px;
+  background-color: #100415;
+  display: flex;
+  justify-content: space-between;
+
+  &__logo {
+    width: 60px;
+    height: 60px;
+  }
+  &__lista {
+    display: flex;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__itemsDeLaLista {
+    list-style: none;
+    color: white;
+    font-size: 18px;
+    margin: 20px;
+  }
+  &__link:hover{
+    background-color: blueviolet;
+    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 55px white, 0 0 75px white;
+  }
+}
+
+.logoDelCarrito {
+    margin: 0px 10px 10px 10px;
+    width: 40px;
+    height: 40px;
+  }
+.ContenedorCarroLogo p {
+  width: 8px;
+  border: 2px white solid;
+  border-radius: 100px;
+  background-color: white;
+}
+
+.Footer {
+  
+  width: 100%;
+  height: 250px;
+  background-color: #100415;
+  position: fixed;
+  bottom: 0;
+
+  &__logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  &__lista {
+    display: flex;
+    flex-direction: column;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__itemsDeLaLista {
+    list-style: none;
+    color: white;
+    font-size: 18px;
+    margin: 20px;
+  }
+  &__link:hover{
+    background-color: blueviolet;
+    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 55px white, 0 0 75px white;
+  }
+}
+
+
+
+
+
