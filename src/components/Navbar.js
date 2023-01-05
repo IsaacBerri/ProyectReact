@@ -1,4 +1,5 @@
 import CardWidget from "./CardWidget";
+import Carrito from "./Carrito";
 
 function Navbar(props) {
   if (props.isNavbar) {
@@ -20,6 +21,7 @@ function Navbar(props) {
         </ul>
         </div>
         <CardWidget/>
+        <Carrito/>
       </nav>
     );
   } else {
