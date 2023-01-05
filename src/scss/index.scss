@@ -10,6 +10,9 @@
   display: flex;
   justify-content: space-between;
 
+  &__contenedor {
+    display: flex;
+  }
   &__logo {
     width: 60px;
     height: 60px;
@@ -34,15 +37,52 @@
 
 .logoDelCarrito {
     margin: 0px 10px 10px 10px;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
-.ContenedorCarroLogo p {
-  width: 8px;
-  border: 2px white solid;
-  border-radius: 100px;
-  background-color: white;
+  .contadorCarrito{
+    width: 15px;
+    height: 15px;
+    border: 2px purple solid;
+    border-radius: 100%;
+    background-color: purple;
+    text-align: center;
+    box-shadow: 1px 2px 51px 32px rgba(138,43,226,1);
+    color: white;
+  }
+.inactive {
+  display: none;
 }
+
+.carrito {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 400px;
+  height: 300px;
+  background-color: wheat;
+
+  &__cerrarCarrito {
+    color: #100415;
+    width: 60px;
+    height: 60px;
+  }
+  &__parteSuperior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    
+    h3 {
+      font-size: 30px;
+      padding: 10px;
+    }
+  }
+
+}
+
+
 
 .Footer {
   
@@ -71,7 +111,6 @@
     margin: 20px;
   }
   &__link:hover{
-    background-color: blueviolet;
     text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white, 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 55px white, 0 0 75px white;
   }
 }

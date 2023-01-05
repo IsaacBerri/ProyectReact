@@ -1,23 +1,24 @@
 import CardWidget from "./CardWidget";
 
 function Navbar(props) {
-  let menuNavbar = ["Inicio", "Nosotros", "Ubicacion", "Contacto"];
-  let menuFooter = ["Facebook", "Instagram", "Twiteer"];
   if (props.isNavbar) {
     return (
       <nav className="barraNav">
-        <div>
+        <div className="barraNav__contenedor">
           <img
             src="https://static.vecteezy.com/system/resources/previews/005/076/592/original/hacker-mascot-for-sports-and-esports-logo-free-vector.jpg"
             alt="logoNabvar"
             className="barraNav__logo"
           />
-        </div>
+        
         <ul className="barraNav__lista">
-          {menuNavbar.map((el, index) => (
-            <a href="#" key={index} className="barraNav__link"><li className="barraNav__itemsDeLaLista">{el}</li></a>
-          ))}
+          <a href="#" className="barraNav__link" id="seccionInicio"><li className="barraNav__itemsDeLaLista">Inicio</li></a>
+          <a href="#" className="barraNav__link" id="seccionNosotros"><li className="barraNav__itemsDeLaLista">Nosotros</li></a>
+          <a href="#" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Productos</li></a>
+          <a href="#" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Ubicacion</li></a>
+          <a href="#" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Contacto</li></a>
         </ul>
+        </div>
         <CardWidget/>
       </nav>
     );
@@ -32,9 +33,9 @@ function Navbar(props) {
           />
         </div>
         <ul className="Footer__lista">
-          {menuFooter.map((el, index) => (
-            <a href="#" key={index} className="Footer__link"><li className="Footer__itemsDeLaLista">{el}</li></a>
-          ))}
+          <a href="#" className="Footer__link"><li className="Footer__itemsDeLaLista">Facebook</li></a>
+          <a href="#" className="Footer__link"><li className="Footer__itemsDeLaLista">Instagram</li></a>
+          <a href="#" className="Footer__link"><li className="Footer__itemsDeLaLista">Twiteer</li></a>
         </ul>
       </nav>
     );

@@ -9,7 +9,6 @@ function App() {
     <>
       <Navbar isNavbar={true}/>
       <Main/>
-      <ItemListContainer greeting="Nueva tienda gamer"/>
       <Footer/>
     </>
   );
