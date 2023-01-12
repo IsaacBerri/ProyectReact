@@ -1,5 +1,6 @@
 import CardWidget from "./CardWidget";
 import Carrito from "./Carrito";
+import { Link } from "react-router-dom";
 
 function Navbar(props) {
   if (props.isNavbar) {
@@ -13,11 +14,11 @@ function Navbar(props) {
           />
         
         <ul className="barraNav__lista">
-          <a href="#" className="barraNav__link" id="seccionInicio"><li className="barraNav__itemsDeLaLista">Inicio</li></a>
-          <a href="#" className="barraNav__link" id="seccionNosotros"><li className="barraNav__itemsDeLaLista">Nosotros</li></a>
-          <a href="#" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Productos</li></a>
-          <a href="#" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Ubicacion</li></a>
-          <a href="#" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Contacto</li></a>
+          <Link to="/" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Inicio</li></Link>
+          <Link to="/Nosotros" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Nosotros</li></Link>
+          <Link to="/Productos" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Productos</li></Link>
+          <Link to="/Ubicacion" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Ubicacion</li></Link>
+          <Link to="/Contacto" className="barraNav__link"><li className="barraNav__itemsDeLaLista">Contacto</li></Link>
         </ul>
         </div>
         <CardWidget/>
@@ -35,9 +36,9 @@ function Navbar(props) {
           />
         </div>
         <ul className="Footer__lista">
-          <a href="#" className="Footer__link"><li className="Footer__itemsDeLaLista">Facebook</li></a>
-          <a href="#" className="Footer__link"><li className="Footer__itemsDeLaLista">Instagram</li></a>
-          <a href="#" className="Footer__link"><li className="Footer__itemsDeLaLista">Twiteer</li></a>
+          <Link to="www.facebook.com" className="Footer__link"><li className="Footer__itemsDeLaLista">Facebook</li></Link>
+          <Link to="www.instagram.com" className="Footer__link"><li className="Footer__itemsDeLaLista">Instagram</li></Link>
+          <Link to="www.Twitter.com" className="Footer__link"><li className="Footer__itemsDeLaLista">Twitter</li></Link>
         </ul>
       </nav>
     );

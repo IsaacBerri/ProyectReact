@@ -1,23 +1,24 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
+import ItemList from "./ItemList";
 
-const ItemListContainer = (prop) => {
+const ItemListContainer = () => {
 
-  const [Contador, setCotador] = useState(0)
+  const [Products, setProducts] = useState([])
+  
+  useEffect(()=>{
+    fetch("https://fakestoreapi.com/products")
+    .then(respuesta => respuesta.json())
+    .then(productos => {
+      console.log(productos)
+      setProducts(productos)
+    })
 
-  const eventoSuma = () => {
-    setCotador(Contador + 1)
-  }
-  const eventoBorrar = () => {
-    setCotador(0)
-  }
-
-
+  },[])
+  
   return (
-    <div>
-        <h2>{prop.greeting}</h2>
-        <p>Conatdor: {Contador}</p>
-        <button onClick={eventoSuma}>Sumar</button>
-        <button onClick={eventoBorrar} >Borrar</button>
+    <div className="containerProductos">
+        <ItemList Productos ={Products}/>
     </div>
   )
 }
