@@ -7,7 +7,7 @@ const Item = ({Producto}) => {
       <img src={Producto.image} alt="" />
       <h3>{Producto.title}</h3>
       <p>$ {Producto.price}</p>
-      <Link to={"/Productos/" + Producto.id}>Comprar</Link>
+      <Link to={"/Item/" + Producto.id}>Detalles</Link>
     </article>
   );
 };
