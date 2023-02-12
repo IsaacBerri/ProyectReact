@@ -16,7 +16,10 @@ const Checkout = () => {
   const { carrito } = useCarrito();
 
   const handleVenta = () => {
-    const venta = {
+    if (Direccion === "") {
+      alert("llena todos los campos para proceder con exito")
+    }else {
+      const venta = {
         Usuario : {
             Nombre : Nombre,
             Telefono : Telefono,
@@ -36,11 +39,13 @@ const Checkout = () => {
 
     pedido
     .then((respuesta) => {
-       console.log(respuesta);
+       alert(`Su tiket de compra es: ${respuesta.id}`)
     })
     .catch((err) => {
         console.log(err);
     })
+    }
+    
   };
 
   const handleNombre = (e) => {
