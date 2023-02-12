@@ -1,21 +1,21 @@
-import { Icon } from '@iconify/react';
-import Carrito from './Carrito';
+import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
+import { useCarrito } from "./CustomProvider";
 
 const CardWidget = () => {
-  const carrito = document.getElementsByClassName("carrito")
 
-  function openCar() {
-    carrito[0].classList.remove("inactive")
-  }
-
+  const { totalProductos } = useCarrito();
   return (
     <>
-    <div className='ContenedorCarroLogo'>
-      <div className='contadorCarrito'>0</div>
-      
-      <Icon onClick={openCar} icon="maki:convenience" color="white" className="logoDelCarrito"/>
-      
-    </div>
+      <div className="ContenedorCarroLogo">
+        <div className="contadorCarrito">{totalProductos}</div>
+        <Link to={"/Carrito"}>
+        <Icon
+          icon="maki:convenience"
+          className="logoDelCarrito"
+        />
+        </Link> 
+      </div>
     </>
   );
 };

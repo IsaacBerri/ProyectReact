@@ -1,47 +1,30 @@
+import { collection, getDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
-import CardWidget from "./CardWidget";
+import { db } from "../firebase";
+import ItemDetail from "./ItemDetail";
 
 const ItemDetailContainer = () => {
   const [Products, setProducts] = useState({});
   const nombreURL = useParams();
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/" + nombreURL.id)
-      .then((respuesta) => respuesta.json())
-      .then((productos) => {
-        setProducts(productos);
-      });
+    const coleccion = collection(db, "Productos")
+    const filtro = doc(coleccion, nombreURL.id)
+    const pedido = getDoc(filtro)
+    pedido
+    .then((respuesta) => {
+      const producto = { ...respuesta.data(), id: respuesta.id}
+      setProducts(producto)
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }, []);
-
-  // const rate = Products
-  // console.log(rate);
 
   return (
     <section className="detallesDelProducto">
-      <div className="irAtras">
-        <Link to={"/Productos"}>
-          <Icon
-            icon="material-symbols:arrow-back-ios-new"
-            width="60"
-            height="60"
-          />
-        </Link>
-        <CardWidget />
-      </div>
-      <div className="containerInfo">
-        <div className="infoDelProducto">
-          <h3 id="infoTitle">{Products.title}</h3>
-          <img src={Products.image} alt={Products.title} id="infoImg" />
-        </div>
-        <div className="infoSecundaria">
-          <p id="infoCategory">{Products.category}</p>
-          <p id="infoDescription">{Products.description}</p>
-          <p id="infoPrice">$ {Products.price}</p>
-        </div>
-      </div>
+      <ItemDetail producto={Products}/>
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { Icon } from "@iconify/react";
 
 const Categorias = () => {
 
@@ -14,6 +15,7 @@ const Categorias = () => {
         <Link onClick={toggleCategorias} to={"/Productos/women's clothing"}>Mujer</Link>
         <Link onClick={toggleCategorias} to={"/Productos/jewelery"}>Joyeria</Link>
         <Link onClick={toggleCategorias} to={"/Productos/electronics"}>Tecnologia</Link>
+        <Icon onClick={toggleCategorias} icon="mdi:alpha-x" className="cerrarCategorias"/>
     </div>
   )
 }

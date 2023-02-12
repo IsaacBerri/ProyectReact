@@ -3,7 +3,7 @@ import Navbar from "./Navbar"
 const Footer = () => {
   return (
     <footer>
-        <Navbar/>
+        <Navbar isFooter={true}/>
     </footer>
   )
 }

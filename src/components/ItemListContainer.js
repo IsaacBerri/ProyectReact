@@ -1,41 +1,60 @@
-import { useState, useEffect } from "react"
+import { collection, getDocs, where, query } from "firebase/firestore";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Filter from "./Filter";
+import { db } from "../firebase";
+import BannerDeProductos from "./BannerDeProductos";
 import ItemList from "./ItemList";
+import Loader from "./Loader";
 
 const ItemListContainer = () => {
+  const [Products, setProducts] = useState([]);
+  const [loadPorducts, setLoadProducts] = useState(false);
 
-  const [Products, setProducts] = useState([])
-  
-  const nameURL = useParams()
+  const nameURL = useParams();
 
-  useEffect(()=>{
-    if(nameURL.category === undefined) {
-      fetch("https://fakestoreapi.com/products")
-      .then(respuesta => respuesta.json())
-      .then(productos => {
-        console.log(productos)
-        setProducts(productos)
-      })
-    } else {
-      fetch("https://fakestoreapi.com/products/category/" + nameURL.category)
-      .then(respuesta => respuesta.json())
-      .then(productos => {
-        console.log(productos)
-        setProducts(productos)
-      })
+  useEffect(() => {
+    if (nameURL.category === undefined) {
+      const coleccion = collection(db, "Productos");
+      const pedido = getDocs(coleccion);
+      pedido
+        .then((respuesta) => {
+          const productos = respuesta.docs.map((producto) => ({
+            ...producto.data(),
+            id: producto.id,
+          }));
+          setProducts(productos);
+          setLoadProducts(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }else {
+      const coleccion = collection(db, "Productos");
+      const filtro = query(coleccion, where("category", "==", nameURL.category))
+      const pedido = getDocs(filtro);
+      pedido
+        .then((respuesta) => {
+          const productos = respuesta.docs.map((producto) => ({
+            ...producto.data(),
+            id: producto.id,
+          }));
+          setProducts(productos);
+          setLoadProducts(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  },[useParams()])
+  }, [nameURL.category]);
 
-  
   return (
     <>
-    <Filter/>
-    <div className="containerProductos">
-        <ItemList Productos ={Products}/>
-    </div>
+      <BannerDeProductos />
+      <div className="containerProductos">
+        {loadPorducts ? <ItemList Productos={Products} /> : <Loader />}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default ItemListContainer
+export default ItemListContainer;
