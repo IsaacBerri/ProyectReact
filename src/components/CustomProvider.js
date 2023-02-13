@@ -12,32 +12,40 @@ const CustomProvider = (props) => {
 
     const [productosCarrito, setProductosCarriro] = useState([])
     const [totalProductos, setTotalProductos] = useState(0)
-    const [unidades, setUnidades] = useState(0)
+    const [unidades, setUnidades] = useState([])
     const [total, setTotal] = useState(0)
+    console.log(unidades);
 
     const agregarProductos = (producto, cantidad) => {
         const productoExistente = productosCarrito.findIndex((x) => x.id === producto.id)
         if (productoExistente === -1) {
             setProductosCarriro([ ...productosCarrito, producto])
-            setUnidades(producto.rating.count = cantidad)
+            setUnidades([...unidades, cantidad])
             setTotalProductos(totalProductos + cantidad)
         }else{
-            setUnidades(producto.rating.count + cantidad)
+            setUnidades(productosCarrito.map((x, index) => unidades[index] + cantidad))
             setTotalProductos(totalProductos + cantidad)
         }
     }
     const eliminarProducto = (producto) => {
         setProductosCarriro(productosCarrito.filter((x) => x.id !== producto.id))
-        setTotalProductos(totalProductos - producto.rating.count)
+        const posicionProducto = productosCarrito.findIndex((x) => {
+            return x.id === producto.id
+        })
+        const unidadesAEliminar = unidades.splice(posicionProducto, 1)
+        setTotalProductos(totalProductos - unidadesAEliminar)
+        setUnidades(unidades)
     }
     const vaciarCarrito = () => {
         setProductosCarriro([])
         setTotalProductos(0)
+        setUnidades([])
     }
 
-    const totalPrecio = setTimeout(() => {
+    
+        setTimeout(() => {
             if (productosCarrito.length != 0) {
-                const subtotales = productosCarrito.map((x) => x.price * x.rating.count)
+                const subtotales = productosCarrito.map((x, index) => x.price * unidades[index])
                 const totalProductos = subtotales.reduce((a, b) => a + b)
                 setTotal(totalProductos)
             }
@@ -54,8 +62,9 @@ const CustomProvider = (props) => {
         setTotalProductos: setTotalProductos,
         agregarProductos: agregarProductos,
         eliminarProducto: eliminarProducto,
+        unidades: unidades,
         total: total,
-        totalPrecio: totalPrecio,
+        totalPrecio: setTimeout,
         vaciarCarrito: vaciarCarrito
     }
 

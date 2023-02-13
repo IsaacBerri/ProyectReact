@@ -3,18 +3,18 @@ import { useCarrito } from "./CustomProvider";
 import { Icon } from "@iconify/react";
 
 const Carrito = () => {
-  const { carrito, vaciarCarrito, eliminarProducto, total } = useCarrito();
+  const { carrito, vaciarCarrito, eliminarProducto, total, unidades } = useCarrito();
 
   return (
     <div className="containerCarro">
       <div className="carrito">
         {carrito.length ? (
-          carrito.map((producto) => {
+          carrito.map((producto, index) => {
             return (
-              <article className="contendorProducto">
+              <article className="contendorProducto" key={producto.id}>
                 <img src={producto.image} alt={producto.title} />
                 <h4>{producto.title}</h4>
-                <p>{producto.rating.count}</p>
+                <p>{unidades[index]}</p>
                 <p>$ {producto.price}</p>
                 <span onClick={() => eliminarProducto(producto)}>
                   <Icon icon="mdi:trash-can-empty" width="25" height="25" />
